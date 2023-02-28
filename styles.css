@@ -57,6 +57,10 @@ body {
   box-shadow: 0px 7px 0px #724D50;
 }
 
+.gameBoyButton:hover {
+  box-shadow: none;
+}
+
 .gameBoyButton:nth-last-of-type(2) {
   margin: 0 36px;
 }

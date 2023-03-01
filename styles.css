@@ -5,6 +5,15 @@
        url('./assets/fonts/vt323-regular-webfont.woff') format('woff');
 }
 
+@keyframes animate {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 304px;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -99,8 +108,10 @@ like to move on :( */
 }
 
 .dogIcon {
-  width: 152px;
+  width: calc(304px / 2);
   height: 130px;
+  background: url("./assets/img/state-happy.png");
+  animation: animate 1s steps(2) infinite;
 }
 
 .whiteLine {

@@ -9,4 +9,5 @@ export default class Game {
     this.tamagotchi.mount({ healthElement });
     console.log("Game started");
   };
+
 }

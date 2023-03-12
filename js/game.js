@@ -7,10 +7,10 @@ export default class Game {
 
   start = ({ healthElement, hungerElement, energyElement, funElement }) => {
     this.tamagotchi.mount({
-      healthElement,
-      hungerElement,
-      energyElement,
-      funElement,
+      healthElement: document.querySelector(`${healthElement}`),
+      hungerElement: document.querySelector(`${hungerElement}`),
+      energyElement: document.querySelector(`${energyElement}`),
+      funElement: document.querySelector(`${funElement}`),
     });
     console.log("Game started");
   };

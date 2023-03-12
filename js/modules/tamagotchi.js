@@ -11,24 +11,20 @@ export default class Tamagotchi {
     console.log("Tamagotchi initialized");
   }
 
-  displayHealth = (elementSelector) => {
-    const displayElement = document.querySelector(elementSelector);
-    displayElement.innerText = this.health.value;
+  displayHealth = () => {
+    this.healthElement.innerText = this.health.value;
   };
 
-  displayHunger = (elementSelector) => {
-    const displayElement = document.querySelector(elementSelector);
-    displayElement.innerText = this.hunger.value;
+  displayHunger = () => {
+    this.hungerElement.innerText = this.hunger.value;
   };
 
-  displayEnergy = (elementSelector) => {
-    const displayElement = document.querySelector(elementSelector);
-    displayElement.innerText = this.energy.value;
+  displayEnergy = () => {
+    this.energyElement.innerText = this.energy.value;
   };
 
-  displayFun = (elementSelector) => {
-    const displayElement = document.querySelector(elementSelector);
-    displayElement.innerText = this.fun.value;
+  displayFun = () => {
+    this.funElement.innerText = this.fun.value;
   };
 
 
@@ -74,9 +70,14 @@ export default class Tamagotchi {
     }
 
   mount = ({ healthElement, hungerElement, energyElement, funElement }) => {
-    this.displayHealth(healthElement);
-    this.displayHunger(hungerElement);
-    this.displayEnergy(energyElement);
-    this.displayFun(funElement);
+    this.healthElement = healthElement;
+    this.hungerElement = hungerElement;
+    this.energyElement = energyElement;
+    this.funElement = funElement;
+
+    this.displayHealth();
+    this.displayHunger();
+    this.displayEnergy();
+    this.displayFun();
   };
 }

@@ -5,9 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Start game
   game.start({
-    healthElement: document.querySelector(".health"),
-    hungerElement: document.querySelector(".hunger"),
-    energyElement: document.querySelector(".energy"),
-    funElement: document.querySelector(".fun"),
+    healthElement: ".health",
+    hungerElement: ".hunger",
+    energyElement: ".energy",
+    funElement: ".fun",
   });
 });

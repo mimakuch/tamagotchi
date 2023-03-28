@@ -8,8 +8,11 @@ export default class Tamagotchi {
     this.hungerDecreaseInterval = setInterval(() => this.decreaseHunger(), 1000);
     this.energyDecreaseInterval = setInterval(() => this.decreaseEnergy(), 2000);
     this.funDecreaseInterval = setInterval(() => this.decreaseFun(), 1000);
+    this.stateCheckInterval = setInterval(() => this.stateCheck(), 1000)
     console.log("Tamagotchi initialized");
   }
+
+  // Methods for handling parameters
 
   displayHealth = () => {
     this.healthElement.innerText = this.health.value;
@@ -69,6 +72,86 @@ export default class Tamagotchi {
       }
     }
 
+    // Methods for handling state
+
+    displayHappy() {
+      const currentState = document.querySelector('.dogIcon')
+      currentState.style.background = 'url("./assets/img/state-happy.png")'
+
+      const statusValue = document.querySelector('.statusValue')
+      statusValue.innerText = 'happy'
+    }
+
+    displaySad() {
+      const currentState = document.querySelector('.dogIcon')
+      currentState.style.background = 'url("./assets/img/state-bored.png")'
+
+      const statusValue = document.querySelector('.statusValue')
+      statusValue.innerText = 'bored'
+    }
+
+    displayHungry() {
+      const currentState = document.querySelector('.dogIcon')
+      currentState.style.background = 'url("./assets/img/state-hungry.png")'
+
+      const statusValue = document.querySelector('.statusValue')
+      statusValue.innerText = 'hungry'
+    }
+
+    displaySleepy() {
+      const currentState = document.querySelector('.dogIcon')
+      currentState.style.background = 'url("./assets/img/state-sleepy.png")'
+
+      const statusValue = document.querySelector('.statusValue')
+      statusValue.innerText = 'sleepy'
+    }
+
+    displayDead() {
+      const currentState = document.querySelector('.dogIcon')
+      currentState.style.background = 'url("./assets/img/state-dead.png")'
+      currentState.style.height = '72px'
+      currentState.style.width = 'calc(364px / 2)'
+      currentState.style.animation = 'none'
+
+      const statusValue = document.querySelector('.statusValue')
+      statusValue.innerText = 'dead'
+    }
+
+    displayEating() {
+
+    }
+
+    displayPlaying() {
+
+    }
+
+    displaySleeping() {
+
+    }
+
+  stateCheck() {
+    const totalImportance = this.health.importance
+        + this.hunger.importance
+        + this.energy.importance
+        + this.fun.importance;
+    const weightedSum = (this.health.value * (this.health.importance / totalImportance))
+        + (this.hunger.value * (this.hunger.importance / totalImportance))
+        + (this.energy.value * (this.energy.importance / totalImportance))
+        + (this.fun.value * (this.fun.importance / totalImportance));
+
+    if (this.health.value <= 0) {
+      this.displayDead();
+    } else if (weightedSum < 3) {
+      this.displaySad();
+    } else if (weightedSum < 6) {
+      this.displaySleepy();
+    } else if (weightedSum < 9) {
+      this.displayHungry();
+    } else {
+      this.displayHappy();
+    }
+  }
+
   mount = ({ healthElement, hungerElement, energyElement, funElement }) => {
     this.healthElement = healthElement;
     this.hungerElement = hungerElement;
@@ -79,5 +162,5 @@ export default class Tamagotchi {
     this.displayHunger();
     this.displayEnergy();
     this.displayFun();
-  };
+  }
 }

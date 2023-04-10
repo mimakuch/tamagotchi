@@ -149,6 +149,7 @@ body {
 
 .gameBoyButton:hover {
   box-shadow: none;
+  cursor: pointer;
 }
 
 .gameBoyButton:nth-last-of-type(2) {

@@ -1,13 +1,16 @@
 export default class Tamagotchi {
-  constructor() {
+  constructor(abilities) {
     this.health = { value: 10, importance: 1 };
     this.hunger = { value: 10, importance: 3 };
     this.energy = { value: 10, importance: 2 };
     this.fun = { value: 10, importance: 4 };
+
     this.healthDecreaseInterval = setInterval(() => this.decreaseHealth(), 1000);
     this.hungerDecreaseInterval = setInterval(() => this.decreaseHunger(), 1000);
     this.energyDecreaseInterval = setInterval(() => this.decreaseEnergy(), 2000);
     this.funDecreaseInterval = setInterval(() => this.decreaseFun(), 1000);
+
+    this.abilities = abilities;
     console.log("Tamagotchi initialized");
   }
 
@@ -121,7 +124,11 @@ export default class Tamagotchi {
     }
 
     displayEating() {
+      const currentState = document.querySelector('.dogIcon')
+      currentState.style.background = 'url("./assets/img/state-eating.png")'
 
+      const statusValue = document.querySelector('.statusValue')
+      statusValue.innerText = 'eating'
     }
 
     displayPlaying() {
@@ -142,17 +149,19 @@ export default class Tamagotchi {
         + (this.energy.value * (this.energy.importance / totalImportance))
         + (this.fun.value * (this.fun.importance / totalImportance));
 
-    if (this.health.value <= 0) {
-      this.displayDead();
-    } else if (weightedSum < 3) {
-      this.displaySad();
-    } else if (weightedSum < 6) {
-      this.displaySleepy();
-    } else if (weightedSum < 9) {
-      this.displayHungry();
-    } else {
-      this.displayHappy();
-    }
+
+      if (this.health.value <= 0) {
+        this.displayDead();
+      } else if (weightedSum < 3) {
+        this.displaySad();
+      } else if (weightedSum < 6) {
+        this.displaySleepy();
+      } else if (weightedSum < 9) {
+        this.displayHungry();
+      } else {
+        this.displayHappy();
+      }
+
   }
 
   mount = ({ healthElement, hungerElement, energyElement, funElement }) => {

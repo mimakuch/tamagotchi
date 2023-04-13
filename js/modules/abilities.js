@@ -66,9 +66,8 @@ export default class Abilities {
     this.feedingButton = feedingButton;
     this.sleepingButton = sleepingButton;
 
-    this.feedingButton.addEventListener('click', () => {
-        console.log('eating')
-      this.startFeeding() }
+    this.feedingButton.addEventListener('click', () =>
+      this.startFeeding()
     );
     this.sleepingButton.addEventListener('click', () =>
       this.startSleeping()

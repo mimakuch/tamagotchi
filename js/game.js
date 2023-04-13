@@ -7,7 +7,14 @@ export default class Game {
     this.abilities = new Abilities(this.tamagotchi);
   }
 
-  start = ({ healthElement, hungerElement, energyElement, funElement, feedingButton }) => {
+  start = (
+      { healthElement,
+        hungerElement,
+        energyElement,
+        funElement,
+        feedingButton,
+        sleepingButton }) => {
+
     this.tamagotchi.mount({
       healthElement: document.querySelector(`${healthElement}`),
       hungerElement: document.querySelector(`${hungerElement}`),
@@ -17,6 +24,7 @@ export default class Game {
 
     this.abilities.mount({
       feedingButton: document.querySelector(`${feedingButton}`),
+      sleepingButton: document.querySelector(`${sleepingButton}`),
     });
     console.log("Game started");
   };

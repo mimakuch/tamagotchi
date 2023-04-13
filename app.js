@@ -10,5 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     energyElement: ".energy",
     funElement: ".fun",
     feedingButton: ".feedingButton",
+    sleepingButton: ".sleepingButton",
   });
 });

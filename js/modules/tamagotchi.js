@@ -136,7 +136,11 @@ export default class Tamagotchi {
     }
 
     displaySleeping() {
+      const currentState = document.querySelector('.dogIcon')
+      currentState.style.background = 'url("./assets/img/state-sleeping.png")'
 
+      const statusValue = document.querySelector('.statusValue')
+      statusValue.innerText = 'sleeping'
     }
 
   stateCheck() {

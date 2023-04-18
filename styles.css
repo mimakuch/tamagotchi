@@ -155,3 +155,29 @@ body {
 .gameBoyButton:nth-last-of-type(2) {
   margin: 0 36px;
 }
+
+.restartButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+  width: 292px;
+  height: 66px;
+  background: #F8D26D;
+  border: 6px solid #DFA46D;
+  box-shadow: 0 7px 0 #724D50;
+  font-family: 'VT323', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 50px;
+  text-align: center;
+  letter-spacing: -0.02em;
+  color: #1C1C1C;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.restartButton:hover {
+  box-shadow: none;
+}

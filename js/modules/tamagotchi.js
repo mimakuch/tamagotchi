@@ -160,6 +160,8 @@ export default class Tamagotchi {
 
       if (this.health.value <= 0) {
         this.displayDead();
+        this.disableAbilitiesButtons();
+        this.createRestartButton();
       } else if (weightedSum < 3) {
         this.displaySad();
       } else if (weightedSum < 6) {
@@ -170,6 +172,24 @@ export default class Tamagotchi {
         this.displayHappy();
       }
 
+  }
+
+  // Methods for handling death
+
+  disableAbilitiesButtons() {
+      const abilitiesButtons = document.querySelectorAll('.gameBoyButton');
+      abilitiesButtons.forEach(button => {
+        button.style.display = 'none';
+      });
+}
+
+  createRestartButton() {
+      const restartButton = document.createElement('button');
+      const nav = document.querySelector('.gameBoyNav')
+
+      restartButton.classList.add('restartButton')
+      restartButton.innerText = 'restart';
+      nav.appendChild(restartButton);
   }
 
   mount = ({ healthElement, hungerElement, energyElement, funElement }) => {

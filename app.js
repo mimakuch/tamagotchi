@@ -12,6 +12,5 @@ document.addEventListener("DOMContentLoaded", () => {
     feedingButton: ".feedingButton",
     sleepingButton: ".sleepingButton",
     playingButton: ".playingButton",
-    restartButton: ".restartButton",
   });
 });

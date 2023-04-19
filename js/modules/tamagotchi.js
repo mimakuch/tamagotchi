@@ -1,5 +1,5 @@
 export default class Tamagotchi {
-  constructor(abilities) {
+  constructor() {
     this.health = { value: 10, importance: 1 };
     this.hunger = { value: 10, importance: 3 };
     this.energy = { value: 10, importance: 2 };
@@ -10,7 +10,6 @@ export default class Tamagotchi {
     this.energyDecreaseInterval = setInterval(() => this.decreaseEnergy(), 2000);
     this.funDecreaseInterval = setInterval(() => this.decreaseFun(), 1000);
 
-    this.abilities = abilities;
     console.log("Tamagotchi initialized");
   }
 
@@ -190,6 +189,13 @@ export default class Tamagotchi {
       restartButton.classList.add('restartButton')
       restartButton.innerText = 'restart';
       nav.appendChild(restartButton);
+
+      restartButton.addEventListener(
+          "click",
+          () => {
+            location.reload();
+          }
+      )
   }
 
   mount = ({ healthElement, hungerElement, energyElement, funElement }) => {

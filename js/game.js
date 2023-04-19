@@ -30,6 +30,7 @@ export default class Game {
             sleepingButton: document.querySelector(`${sleepingButton}`),
             playingButton: document.querySelector(`${playingButton}`),
         });
+
         console.log("Game started");
     };
 

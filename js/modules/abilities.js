@@ -11,6 +11,7 @@ export default class Abilities {
   }
 
   startFeeding() {
+    console.log('Click');
     if (this.isSleeping || this.isPlaying) {
       this.stopSleeping();
       this.stopPlaying();
@@ -22,7 +23,8 @@ export default class Abilities {
 
         this.feedingInterval = setInterval(() => {
           this.tamagotchi.hunger.value += 2;
-          this.tamagotchi.displayEating();
+          this.tamagotchi
+              .displayState('url("./assets/img/state-eating.png")', 'eating');
           if (this.tamagotchi.hunger.value >= 10) {
             this.stopFeeding();
           }
@@ -50,7 +52,8 @@ export default class Abilities {
 
       this.sleepingInterval = setInterval(() => {
         this.tamagotchi.energy.value += 2;
-        this.tamagotchi.displaySleeping();
+        this.tamagotchi
+            .displayState('url("./assets/img/state-sleeping.png")',  'sleeping');
         if (this.tamagotchi.energy.value >= 10) {
           this.stopSleeping();
         }
@@ -79,7 +82,8 @@ export default class Abilities {
       this.playingInterval = setInterval(() => {
         this.tamagotchi.fun.value += 2;
         this.tamagotchi.energy.value -= 1;
-        this.tamagotchi.displayPlaying();
+        this.tamagotchi
+            .displayState('url("./assets/img/state-playing.png")', 'playing');
         if (this.tamagotchi.fun.value >= 10) {
           this.stopPlaying();
         }

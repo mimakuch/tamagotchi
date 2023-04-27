@@ -79,36 +79,12 @@ export default class Tamagotchi {
 
     // Methods for handling state
 
-    displayHappy() {
+    displayState(background, text) {
       const currentState = document.querySelector('.dogIcon')
-      currentState.style.background = 'url("./assets/img/state-happy.png")'
+      currentState.style.background = background
 
       const statusValue = document.querySelector('.statusValue')
-      statusValue.innerText = 'happy'
-    }
-
-    displaySad() {
-      const currentState = document.querySelector('.dogIcon')
-      currentState.style.background = 'url("./assets/img/state-bored.png")'
-
-      const statusValue = document.querySelector('.statusValue')
-      statusValue.innerText = 'bored'
-    }
-
-    displayHungry() {
-      const currentState = document.querySelector('.dogIcon')
-      currentState.style.background = 'url("./assets/img/state-hungry.png")'
-
-      const statusValue = document.querySelector('.statusValue')
-      statusValue.innerText = 'hungry'
-    }
-
-    displaySleepy() {
-      const currentState = document.querySelector('.dogIcon')
-      currentState.style.background = 'url("./assets/img/state-sleepy.png")'
-
-      const statusValue = document.querySelector('.statusValue')
-      statusValue.innerText = 'sleepy'
+      statusValue.innerText = text
     }
 
     displayDead() {
@@ -120,30 +96,6 @@ export default class Tamagotchi {
 
       const statusValue = document.querySelector('.statusValue')
       statusValue.innerText = 'dead'
-    }
-
-    displayEating() {
-      const currentState = document.querySelector('.dogIcon')
-      currentState.style.background = 'url("./assets/img/state-eating.png")'
-
-      const statusValue = document.querySelector('.statusValue')
-      statusValue.innerText = 'eating'
-    }
-
-    displayPlaying() {
-      const currentState = document.querySelector('.dogIcon')
-      currentState.style.background = 'url("./assets/img/state-playing.png")'
-
-      const statusValue = document.querySelector('.statusValue')
-      statusValue.innerText = 'playing'
-    }
-
-    displaySleeping() {
-      const currentState = document.querySelector('.dogIcon')
-      currentState.style.background = 'url("./assets/img/state-sleeping.png")'
-
-      const statusValue = document.querySelector('.statusValue')
-      statusValue.innerText = 'sleeping'
     }
 
   stateCheck() {
@@ -162,13 +114,13 @@ export default class Tamagotchi {
         this.disableAbilitiesButtons();
         this.createRestartButton();
       } else if (weightedSum < 3) {
-        this.displaySad();
+        this.displayState('url("./assets/img/state-bored.png")', 'bored');
       } else if (weightedSum < 6) {
-        this.displaySleepy();
+        this.displayState('url("./assets/img/state-sleepy.png")', 'sleepy');
       } else if (weightedSum < 9) {
-        this.displayHungry();
+        this.displayState('url("./assets/img/state-hungry.png")', 'hungry');
       } else {
-        this.displayHappy();
+        this.displayState('url("./assets/img/state-happy.png")', 'happy');
       }
 
   }

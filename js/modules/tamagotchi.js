@@ -5,6 +5,8 @@ export default class Tamagotchi {
     this.energy = { value: 10, importance: 2 };
     this.fun = { value: 10, importance: 4 };
 
+    this.currentActivity = null; // Can be set to eating, sleeping, playing or null
+
     this.healthDecreaseInterval = setInterval(() => this.decreaseHealth(), 1000);
     this.hungerDecreaseInterval = setInterval(() => this.decreaseHunger(), 1000);
     this.energyDecreaseInterval = setInterval(() => this.decreaseEnergy(), 2000);
@@ -88,41 +90,52 @@ export default class Tamagotchi {
     }
 
     displayDead() {
+      this.displayState('url("./assets/img/state-dead.png")', 'dead')
       const currentState = document.querySelector('.dogIcon')
-      currentState.style.background = 'url("./assets/img/state-dead.png")'
       currentState.style.height = '72px'
       currentState.style.width = 'calc(364px / 2)'
       currentState.style.animation = 'none'
-
-      const statusValue = document.querySelector('.statusValue')
-      statusValue.innerText = 'dead'
     }
 
   stateCheck() {
-    const totalImportance = this.health.importance
-        + this.hunger.importance
-        + this.energy.importance
-        + this.fun.importance;
-    const weightedSum = (this.health.value * (this.health.importance / totalImportance))
-        + (this.hunger.value * (this.hunger.importance / totalImportance))
-        + (this.energy.value * (this.energy.importance / totalImportance))
-        + (this.fun.value * (this.fun.importance / totalImportance));
+
+      switch (this.currentActivity) {
+
+        case 'eating':
+          this.displayState('url("./assets/img/state-eating.png")', 'eating')
+              break
+        case 'sleeping':
+          this.displayState('url("./assets/img/state-sleeping.png")', 'sleeping')
+              break
+        case 'playing':
+          this.displayState('url("./assets/img/state-playing.png")', 'playing')
+              break
+        default:
+
+          const totalImportance = this.health.importance
+              + this.hunger.importance
+              + this.energy.importance
+              + this.fun.importance;
+          const weightedSum = (this.health.value * (this.health.importance / totalImportance))
+              + (this.hunger.value * (this.hunger.importance / totalImportance))
+              + (this.energy.value * (this.energy.importance / totalImportance))
+              + (this.fun.value * (this.fun.importance / totalImportance));
 
 
-      if (this.health.value <= 0) {
-        this.displayDead();
-        this.disableAbilitiesButtons();
-        this.createRestartButton();
-      } else if (weightedSum < 3) {
-        this.displayState('url("./assets/img/state-bored.png")', 'bored');
-      } else if (weightedSum < 6) {
-        this.displayState('url("./assets/img/state-sleepy.png")', 'sleepy');
-      } else if (weightedSum < 9) {
-        this.displayState('url("./assets/img/state-hungry.png")', 'hungry');
-      } else {
-        this.displayState('url("./assets/img/state-happy.png")', 'happy');
+          if (this.health.value <= 0) {
+            this.displayDead();
+            this.disableAbilitiesButtons();
+            this.createRestartButton();
+          } else if (weightedSum < 3) {
+            this.displayState('url("./assets/img/state-bored.png")', 'bored');
+          } else if (weightedSum < 6) {
+            this.displayState('url("./assets/img/state-sleepy.png")', 'sleepy');
+          } else if (weightedSum < 9) {
+            this.displayState('url("./assets/img/state-hungry.png")', 'hungry');
+          } else {
+            this.displayState('url("./assets/img/state-happy.png")', 'happy');
+          }
       }
-
   }
 
   // Methods for handling death

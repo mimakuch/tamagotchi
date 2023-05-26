@@ -10,6 +10,11 @@ export default class Tamagotchi {
   hunger: Parameters;
   energy: Parameters;
   fun: Parameters;
+  currentActivity: string | null;
+  healthDecreaseInterval: number;
+  hungerDecreaseInterval: number;
+  energyDecreaseInterval: number;
+  funDecreaseInterval: number;
   constructor() {
     this.health = { value: 10, importance: 1 };
     this.hunger = { value: 10, importance: 3 };

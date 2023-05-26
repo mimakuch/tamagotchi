@@ -1,4 +1,11 @@
+import Tamagotchi from './tamagotchi';
+import { MountPropsWithButtons } from './types';
+
 export default class Abilities {
+  tamagotchi: Tamagotchi;
+  feedingInterval: null | number;
+  sleepingInterval: null | number;
+  playingInterval: null | number;
   constructor(tamagotchi) {
     this.tamagotchi = tamagotchi;
     this.feedingInterval = null;
@@ -97,7 +104,11 @@ export default class Abilities {
     this.tamagotchi.currentActivity = null;
   }
 
-  mount = ({ feedingButton, sleepingButton, playingButton }) => {
+  mount = ({
+    feedingButton,
+    sleepingButton,
+    playingButton,
+  }: MountPropsWithButtons) => {
     this.feedingButton = feedingButton;
     this.sleepingButton = sleepingButton;
     this.playingButton = playingButton;

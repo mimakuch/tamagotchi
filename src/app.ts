@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Start game
   game.start({
-    healthElement: '.health',
-    hungerElement: '.hunger',
-    energyElement: '.energy',
-    funElement: '.fun',
-    feedingButton: '.feedingButton',
-    sleepingButton: '.sleepingButton',
-    playingButton: '.playingButton',
+    healthElement: document.querySelector('.health'),
+    hungerElement: document.querySelector('.hunger'),
+    energyElement: document.querySelector('.energy'),
+    funElement: document.querySelector('.fun'),
+    feedingButton: document.querySelector('.feedingButton'),
+    sleepingButton: document.querySelector('.sleepingButton'),
+    playingButton: document.querySelector('.playingButton'),
   });
 });

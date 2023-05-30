@@ -21,16 +21,20 @@ export default class Game {
     playingButton,
   }: MountPropsWithButtons) => {
     this.tamagotchi.mount({
-      healthElement: document.querySelector(`${healthElement}`),
-      hungerElement: document.querySelector(`${hungerElement}`),
-      energyElement: document.querySelector(`${energyElement}`),
-      funElement: document.querySelector(`${funElement}`),
+      healthElement: healthElement,
+      hungerElement: hungerElement,
+      energyElement: energyElement,
+      funElement: funElement,
     });
 
     this.abilities.mount({
-      feedingButton: document.querySelector(`${feedingButton}`),
-      sleepingButton: document.querySelector(`${sleepingButton}`),
-      playingButton: document.querySelector(`${playingButton}`),
+      energyElement: energyElement,
+      funElement: funElement,
+      healthElement: healthElement,
+      hungerElement: hungerElement,
+      feedingButton: feedingButton,
+      sleepingButton: sleepingButton,
+      playingButton: playingButton,
     });
 
     console.log('Game started');

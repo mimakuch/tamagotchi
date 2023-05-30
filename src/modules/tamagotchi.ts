@@ -15,11 +15,20 @@ export default class Tamagotchi {
   hungerDecreaseInterval: number;
   energyDecreaseInterval: number;
   funDecreaseInterval: number;
+  healthElement: HTMLElement | null;
+  hungerElement: HTMLElement | null;
+  energyElement: HTMLElement | null;
+  funElement: HTMLElement | null;
   constructor() {
     this.health = { value: 10, importance: 1 };
     this.hunger = { value: 10, importance: 3 };
     this.energy = { value: 10, importance: 2 };
     this.fun = { value: 10, importance: 4 };
+
+    this.healthElement = null;
+    this.hungerElement = null;
+    this.energyElement = null;
+    this.funElement = null;
 
     this.currentActivity = null; // Can be set to eating, sleeping, playing or null
 
@@ -46,19 +55,35 @@ export default class Tamagotchi {
   // Methods for handling parameters
 
   displayHealth = () => {
-    this.healthElement.innerText = this.health.value;
+    if (!this.healthElement) {
+      console.warn('healthElement not found!');
+      return;
+    }
+    this.healthElement.innerText = String(this.health.value);
   };
 
   displayHunger = () => {
-    this.hungerElement.innerText = this.hunger.value;
+    if (!this.hungerElement) {
+      console.warn('hungerElement not found!');
+      return;
+    }
+    this.hungerElement.innerText = String(this.hunger.value);
   };
 
   displayEnergy = () => {
-    this.energyElement.innerText = this.energy.value;
+    if (!this.energyElement) {
+      console.warn('energyElement not found!');
+      return;
+    }
+    this.energyElement.innerText = String(this.energy.value);
   };
 
   displayFun = () => {
-    this.funElement.innerText = this.fun.value;
+    if (!this.funElement) {
+      console.warn('funElement not found!');
+      return;
+    }
+    this.funElement.innerText = String(this.fun.value);
   };
 
   decreaseHealth() {
@@ -108,17 +133,32 @@ export default class Tamagotchi {
 
   // Methods for handling state
 
-  displayState(background, text) {
-    const currentState = document.querySelector('.dogIcon');
+  displayState(background: string, text: string) {
+    const currentState: HTMLElement | null =
+      document.querySelector('.dogIcon');
+    if (!currentState) {
+      console.warn('currentState not found!');
+      return;
+    }
     currentState.style.background = background;
 
-    const statusValue = document.querySelector('.statusValue');
+    const statusValue: HTMLElement | null =
+      document.querySelector('.statusValue');
+    if (!statusValue) {
+      console.warn('statusValue not found!');
+      return;
+    }
     statusValue.innerText = text;
   }
 
   displayDead() {
     this.displayState('url("./assets/img/state-dead.png")', 'dead');
-    const currentState = document.querySelector('.dogIcon');
+    const currentState: HTMLElement | null =
+      document.querySelector('.dogIcon');
+    if (!currentState) {
+      console.warn('currentState not found!');
+      return;
+    }
     currentState.style.height = '72px';
     currentState.style.width = 'calc(364px / 2)';
     currentState.style.animation = 'none';
@@ -190,7 +230,7 @@ export default class Tamagotchi {
   // Methods for handling death
 
   disableAbilitiesButtons() {
-    const abilitiesButtons =
+    const abilitiesButtons: NodeListOf<HTMLElement> =
       document.querySelectorAll('.gameBoyButton');
     abilitiesButtons.forEach((button) => {
       button.style.display = 'none';
@@ -200,6 +240,10 @@ export default class Tamagotchi {
   createRestartButton() {
     const restartButton = document.createElement('button');
     const nav = document.querySelector('.gameBoyNav');
+    if (!nav) {
+      console.warn('Nav not found!');
+      return;
+    }
 
     restartButton.classList.add('restartButton');
     restartButton.innerText = 'restart';

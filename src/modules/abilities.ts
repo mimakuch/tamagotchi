@@ -6,11 +6,18 @@ export default class Abilities {
   feedingInterval: null | number;
   sleepingInterval: null | number;
   playingInterval: null | number;
-  constructor(tamagotchi) {
+  feedingButton: HTMLElement | null;
+  sleepingButton: HTMLElement | null;
+  playingButton: HTMLElement | null;
+  constructor(tamagotchi: Tamagotchi) {
     this.tamagotchi = tamagotchi;
     this.feedingInterval = null;
     this.sleepingInterval = null;
     this.playingInterval = null;
+    this.feedingButton = null;
+    this.sleepingButton = null;
+    this.playingButton = null;
+
     console.log('Abilities module initialized');
   }
 
@@ -37,7 +44,12 @@ export default class Abilities {
   }
 
   stopFeeding() {
+    if (!this.feedingInterval) {
+      console.warn('Feeding interval is not found!');
+      return;
+    }
     clearInterval(this.feedingInterval);
+
     this.tamagotchi.hungerDecreaseInterval = setInterval(
       () => this.tamagotchi.decreaseHunger(),
       1000
@@ -66,6 +78,10 @@ export default class Abilities {
   }
 
   stopSleeping() {
+    if (!this.sleepingInterval) {
+      console.warn('Sleeping interval is not found!');
+      return;
+    }
     clearInterval(this.sleepingInterval);
     this.tamagotchi.energyDecreaseInterval = setInterval(
       () => this.tamagotchi.decreaseEnergy(),
@@ -96,6 +112,10 @@ export default class Abilities {
   }
 
   stopPlaying() {
+    if (!this.playingInterval) {
+      console.warn('Playing interval is not found!');
+      return;
+    }
     clearInterval(this.playingInterval);
     this.tamagotchi.funDecreaseInterval = setInterval(
       () => this.tamagotchi.decreaseFun(),
@@ -113,12 +133,26 @@ export default class Abilities {
     this.sleepingButton = sleepingButton;
     this.playingButton = playingButton;
 
+    if (!this.feedingButton) {
+      console.warn('Feeding button is not found!');
+      return;
+    }
     this.feedingButton.addEventListener('click', () =>
       this.startFeeding()
     );
+
+    if (!this.sleepingButton) {
+      console.warn('Sleeping button is not found!');
+      return;
+    }
     this.sleepingButton.addEventListener('click', () =>
       this.startSleeping()
     );
+
+    if (!this.playingButton) {
+      console.warn('Playing button is not found!');
+      return;
+    }
     this.playingButton.addEventListener('click', () =>
       this.startPlaying()
     );
